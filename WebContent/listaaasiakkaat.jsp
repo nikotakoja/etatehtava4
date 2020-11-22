@@ -11,20 +11,48 @@
 .oikealle {
 	text-align: right;
 }
+.vasemmalle {
+	text-align: left;
+}
 
+html {
+font-family: verdana;
+font-size: 14;
+}
+
+table {
+  width: 50%;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+  height: 50px;
+  padding: 15px;
+}
+
+td {
+ padding: 15px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.nappi {font-size: 18px;}
 
 </style>
 </head>
 <body>
 
-	<table id="listaus" border="1">
+	<table id="listaus">
 		<thead>
 			<tr>
 				<th class="oikealle">Hakusana:</th>
-				<th colspan="2"><input type="text" id="hakusana"></th>
-				<th><input type="button" value="hae" id="hakunappi"></th>
+				<th colspan="3" class="vasemmalle"><input type="text" id="hakusana"></th>
+				<th class="vasemmalle"><input type="button" value="hae" class="nappi" id="hakunappi"></th>
 			</tr>
-			<tr>
+			<tr class="vasemmalle">
 				<th>Asiakasnro</th>
 				<th>Etunimi</th>
 				<th>Sukunimi</th>
