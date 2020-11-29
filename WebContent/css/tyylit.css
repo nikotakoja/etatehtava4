@@ -1,0 +1,43 @@
+.oikealle {
+	text-align: right;
+}
+.vasemmalle {
+	text-align: left;
+}
+
+html {
+font-family: verdana;
+font-size: 14;
+}
+
+table {
+  width: 50%;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+  height: 50px;
+  padding: 15px;
+}
+
+td {
+ padding: 15px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.nappi {font-size: 18px;}
+
+#uusiAsiakas, #takaisin {
+	color: white;
+	cursor: pointer;
+}
+
+.poista{
+	color: red;
+	text-decoration: underline;
+	cursor: pointer;	
+}

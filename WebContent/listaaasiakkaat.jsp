@@ -4,52 +4,20 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/tyylit.css">
 <title>Asiakkaiden haku</title>
-<style>
-.oikealle {
-	text-align: right;
-}
-.vasemmalle {
-	text-align: left;
-}
-
-html {
-font-family: verdana;
-font-size: 14;
-}
-
-table {
-  width: 50%;
-}
-
-th {
-  background-color: #4CAF50;
-  color: white;
-  height: 50px;
-  padding: 15px;
-}
-
-td {
- padding: 15px;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-.nappi {font-size: 18px;}
-
-</style>
 </head>
 <body>
 
 	<table id="listaus">
 		<thead>
 			<tr>
+				<th colspan="6" class="oikealle"><span id="uusiAsiakas">Lisää uusi asiakas</span></th>
+			</tr>
+			<tr>
 				<th class="oikealle">Hakusana:</th>
-				<th colspan="3" class="vasemmalle"><input type="text" id="hakusana"></th>
+				<th colspan="4" class="vasemmalle"><input type="text" id="hakusana"></th>
 				<th class="vasemmalle"><input type="button" value="hae" class="nappi" id="hakunappi"></th>
 			</tr>
 			<tr class="vasemmalle">
@@ -58,6 +26,7 @@ tr:nth-child(even) {
 				<th>Sukunimi</th>
 				<th>Puhelin</th>
 				<th>Sähköposti</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -66,6 +35,11 @@ tr:nth-child(even) {
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			
+			$("#uusiAsiakas").click(function() {
+				document.location="lisaaasiakas.jsp";
+			});
+			
 			haeAsiakkaat();
 			$("#hakunappi").click(function() {
 				haeAsiakkaat();
@@ -87,18 +61,33 @@ tr:nth-child(even) {
 				success : function(result) {//Funktio palauttaa tiedot json-objektina		
 					$.each(result.asiakkaat, function(i, field) {
 						var htmlStr;
-						htmlStr += "<tr>";
+						htmlStr += "<tr id='rivi_"+field.asiakas_id +"'>";
 						htmlStr += "<td>" + field.asiakas_id + "</td>";
 						htmlStr += "<td>" + field.etunimi + "</td>";
 						htmlStr += "<td>" + field.sukunimi + "</td>";
 						htmlStr += "<td>" + field.puhelin + "</td>";
 						htmlStr += "<td>" + field.sposti + "</td>";
+						htmlStr+="<td><span class='poista' onclick=poista('"+field.asiakas_id +"')>Poista</span></td>";
 						htmlStr += "</tr>";
 						$("#listaus tbody").append(htmlStr);
 					});
 				}
 			})
 		};
+		
+		function poista(asiakas_id){
+			if(confirm("Poista asiakas " + asiakas_id +"?")){
+				$.ajax({url:"asiakkaat/"+asiakas_id, type:"DELETE", dataType:"json", success:function(result) { //result on joko {"response:1"} tai {"response:0"}
+			        if(result.response==0){
+			        	$("#ilmo").html("Asiakkaan poisto epäonnistui.");
+			        }else if(result.response==1){
+			        	$("#rivi_"+asiakas_id).css("background-color", "red"); //Värjätään poistetun asiakkaan rivi
+			        	alert("Asiakkaan " + asiakas_id +" poisto onnistui.");
+			        	haeAsiakkaat();        	
+					}
+			    }});
+			}
+		}	
 	</script>
 
 </body>
