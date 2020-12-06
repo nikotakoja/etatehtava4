@@ -1,43 +1,53 @@
 .oikealle {
 	text-align: right;
 }
+
 .vasemmalle {
 	text-align: left;
 }
 
 html {
-font-family: verdana;
-font-size: 14;
+	font-family: verdana;
+	font-size: 14;
 }
 
 table {
-  width: 50%;
+	width: 50%;
+	padding: 8px;
+}
+
+table tbody tr:hover {background-color: #ddd;}
+
+tr {
+	border: 1px solid #ddd;
 }
 
 th {
-  background-color: #4CAF50;
-  color: white;
-  height: 50px;
-  padding: 15px;
+	background-color: #4CAF50;
+	color: white;
+	height: 50px;
+	padding: 15px;
 }
 
 td {
- padding: 15px;
+	padding: 15px;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+	background-color: #f2f2f2;
 }
 
-.nappi {font-size: 18px;}
+.nappi {
+	font-size: 18px;
+}
 
 #uusiAsiakas, #takaisin {
 	color: white;
 	cursor: pointer;
 }
 
-.poista{
+.poista {
 	color: red;
 	text-decoration: underline;
-	cursor: pointer;	
+	cursor: pointer;
 }
