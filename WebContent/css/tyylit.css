@@ -1,5 +1,6 @@
 .oikealle {
 	text-align: right;
+	font-size: 14;
 }
 
 .vasemmalle {
@@ -44,6 +45,7 @@ tr:nth-child(even) {
 #uusiAsiakas, #takaisin {
 	color: white;
 	cursor: pointer;
+	font-size: 11;
 }
 
 .poista {
